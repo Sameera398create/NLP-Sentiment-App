@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sentiment Analysis</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Sentiment Analysis</h1>
+
+    <form method="post">
+      <textarea name="user_text" placeholder="Enter sentence or paragraph..." required></textarea>
+      <button type="submit">Analyze</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+      <p><strong>Input:</strong> {{ result.text }}</p>
+      <p><strong>Polarity:</strong> {{ result.polarity }}</p>
+      <h3>{{ result.mood }}</h3>
+    </div>
+    {% endif %}
+
+    <footer>
+      <small>Built with TextBlob · Demo app</small>
+    </footer>
+  </div>
+</body>
+</html>
