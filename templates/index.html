@@ -1,31 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sentiment Analysis</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis 💖</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Sentiment Analysis</h1>
 
-    <form method="post">
-      <textarea name="user_text" placeholder="Enter sentence or paragraph..." required></textarea>
-      <button type="submit">Analyze</button>
-    </form>
+    <div class="container">
+        <h1 class="title">💖 Sentiment Analysis 💖</h1>
 
-    {% if result %}
-    <div class="result">
-      <p><strong>Input:</strong> {{ result.text }}</p>
-      <p><strong>Polarity:</strong> {{ result.polarity }}</p>
-      <h3>{{ result.mood }}</h3>
+        <form method="POST">
+            <textarea name="user_text" placeholder="Write something cute..." required>{{ result.text if result }}</textarea>
+            <button type="submit" class="btn">Analyze ✨</button>
+        </form>
+
+        {% if result %}
+        <div class="result-box">
+            <p><b>Input:</b> {{ result.text }}</p>
+            <p><b>Polarity:</b> {{ result.polarity }}</p>
+            <p class="sentiment {{ result.label }}">
+                {{ result.label }}
+                {% if result.label == "Positive" %} 😊💖
+                {% elif result.label == "Negative" %} 😢💔
+                {% else %} 😐✨
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+
+        <footer>Made with 💙 & 💖 by Sameera</footer>
     </div>
-    {% endif %}
 
-    <footer>
-      <small>Built with TextBlob · Demo app</small>
-    </footer>
-  </div>
 </body>
 </html>
